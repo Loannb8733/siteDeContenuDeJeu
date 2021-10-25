@@ -1,0 +1,36 @@
+{% extends 'back-layout.html.twig' %}
+
+{% block body %}
+<article>
+    <h2>{{ funnyStuffs.title }}</h2>
+    <div class="metadata">Publié le {{ funnyStuffs.createdAt | date('d/m/y') }} à 
+                                    {{ funnyStuffs.createdAt | date('H:i') }}
+
+        <div>
+            {{ funnyStuffs.content | raw }}
+        </div>
+    </div>
+
+    <br>
+
+    <div class="content">
+        <iframe src="{{ funnyStuffs.video }}" alt=""> </iframe>
+    </div>
+
+    <br>
+
+    {% if app.user.roles[1] is defined and app.user.roles[1] == "ROLE_ADMIN" %}
+        <div>
+            <a href="{{ path('funny_stuffs_edit', {'id': funnyStuffs.id}) }}" class="btn btn-outline-warning">Modifier la funny stuff</a>
+        </div>
+
+        <br>
+
+        <div>
+            <a href="{{ path('funny_stuffs_delete', {'id': funnyStuffs.id}) }}" class="btn btn-outline-primary">Supprimer la funny stuff</a>
+        </div>
+    {% endif %}
+    
+</article>
+
+{% endblock %}

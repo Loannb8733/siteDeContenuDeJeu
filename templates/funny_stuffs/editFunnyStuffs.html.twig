@@ -1,0 +1,48 @@
+{% extends 'back-layout.html.twig' %}
+
+{% form_theme formFunnyStuffs 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<section>
+    <h1> {{ title }} </h1>
+
+    {{ form_start(formFunnyStuffs) }}
+        {{ form_row(formFunnyStuffs.title, { 
+            label: 'Titre',
+                'attr': {
+                    'placeholder': 'Titre de la funny stuff...'
+                }
+            })  
+        }}
+
+        <br>
+
+        {{ form_row(formFunnyStuffs.content, {
+            label: 'Contenu de la funny stuff ',
+                'attr': {
+                    'placeholder': 'Contenu de la funny stuff...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        {{ form_row(formFunnyStuffs.video, {
+            label: 'code source de la video',
+                'attr': {
+                    'placeholder': 'code source de la video...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        <button type="submit" class="btn btn-outline-success">
+            Enregistrer les modifications
+        </button>
+
+    {{ form_end(formFunnyStuffs) }}
+</section>
+
+{% endblock %}

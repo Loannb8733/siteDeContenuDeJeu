@@ -1,0 +1,76 @@
+{% extends 'front-layout.html.twig' %}
+
+{% form_theme commentForm 'bootstrap_4_layout.html.twig' %}
+
+
+{% block body %}
+    <article>
+        <h2>{{ news.title }}</h2>
+        <div class="metadata">Publié le {{ news.createdAt | date('d/m/y') }} à
+            {{ news.createdAt | date('H:i') }}
+            dans la catégorie {{ news.category.title }}
+        </div>
+
+        <br>
+
+        <div class="content">
+            <img src="{{ news.image}}" alt="">
+
+            <div>
+                <br>
+                {{ news.content | raw }}
+            </div>
+        </div>
+    </article>
+
+    <br>
+
+    <section id="comments">
+        <h1> {{ news.comments | length }} {{ titleComment }} </h1>
+
+        {% for comment in news.comments %}
+            <table class="table table-hover">
+                <tbody>
+                <tr class="table-secondary">
+                    <th scope="row">
+                        {{comment.author}} (<small> {{ comment.createdAt | date('d/m/Y à H:i') }})
+                    </th>
+                    <td>{{comment.content | raw}}</td>
+                </tr>
+                </tbody>
+            </table>
+        {% endfor %}
+
+        <br>
+
+        <h2> {{ titleAddComment }} </h2>
+
+        {{ form_start(commentForm) }}
+        {{ form_row(commentForm.author, {
+            label: 'Nom',
+            'attr': {
+                'placeholder': 'Votre nom...'
+            }
+        })
+        }}
+
+        <br>
+
+        {{ form_row(commentForm.content, {
+            label: 'Commentaire ',
+            'attr': {
+                'placeholder': 'Votre commentaire...'
+            }
+        })
+        }}
+
+        <br>
+
+        <button type="submit" class="btn btn-ouline-light">
+            Commenter
+        </button>
+
+        {{ form_end(commentForm) }}
+    </section>
+
+{% endblock %}

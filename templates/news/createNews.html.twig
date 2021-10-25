@@ -1,0 +1,57 @@
+{% extends 'back-layout.html.twig' %}
+
+{% form_theme formArticle 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<section>
+    <h1> {{ title }} </h1>
+
+    {{ form_start(formArticle) }}
+        {{ form_row(formArticle.title, { 
+            label: 'Titre',
+                'attr': {
+                    'placeholder': 'Titre de l\'article...'
+                }
+            })  
+        }}
+        
+        <br>
+
+        {{ form_row(formArticle.category, {
+            label: 'Catégorie de l\'article ' }) 
+        }}
+
+        <br>
+
+        {{ form_row(formArticle.content, {
+            label: 'Contenu de l\'article ',
+                'attr': {
+                    'placeholder': 'Contenu de l\'article...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        {{ form_row(formArticle.image, {
+            label: 'Url de l\'image',
+                'attr': {
+                    'placeholder': 'URL de l\'article...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        <button type="submit" class="btn btn-outline-danger">
+            Ajouter l'article
+        </button>
+
+        <a href="{{ path('category_create')}}" class="btn btn-outline-danger">Ajouter une category</a>
+
+    {{ form_end(formArticle) }}
+</section>
+
+
+{% endblock %}

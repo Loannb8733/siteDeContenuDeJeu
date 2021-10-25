@@ -1,0 +1,36 @@
+{% extends 'back-layout.html.twig' %}
+
+{% block body %}
+    <h1> {{title}} </h1>
+
+    {% if app.user.roles[1] is defined and app.user.roles[1] == "ROLE_ADMIN" %}
+        <div>
+            <a href="{{ path('category_create')}}" class="btn btn-outline-danger">Ajouter une catégorie</a>
+        </div>
+
+        <br>
+    {% endif %}
+
+    <section class="articles">
+        {% for categorie in category %}
+            <article>
+                <h2> {{ categorie.title }} </h2>
+                <div class="metadata">
+                    {{ categorie.content }}
+                </div>
+
+                <br>
+
+                <div class="content">
+                    {% if app.user.roles[1] is defined and app.user.roles[1] == "ROLE_ADMIN" %}
+                        <a href="{{ path('category_delete', {'id': categorie.id}) }}"
+                           class="btn btn-outline-primary" >Supprimer</a>
+                    {% endif %}
+                </div>
+
+                <br><br><br>
+
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

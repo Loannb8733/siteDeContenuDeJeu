@@ -1,0 +1,79 @@
+{% extends 'back-layout.html.twig' %}
+
+{% form_theme gameForm 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<section>
+    <h1> {{ title }} </h1>
+
+    {{ form_start(gameForm) }}
+        {{ form_row(gameForm.name, { 
+            label: 'Nom du jeu',
+                'attr': {
+                    'placeholder': 'Nom du jeu...'
+                }
+            })  
+        }}
+
+        <br>
+
+        {{ form_row(gameForm.platform, {
+            label: 'Plateforme (PC, XBOX, etc...)',
+                'attr': {
+                    'placeholder': 'Plateforme...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        {{ form_row(gameForm.content, {
+            label: 'Description du jeu',
+                'attr': {
+                    'placeholder': 'Description...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        {{ form_row(gameForm.image, {
+            label: 'URL de l\'image',
+                'attr': {
+                    'placeholder': 'URL de l\'image...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        {{ form_row(gameForm.video, {
+            label: 'Code source de la video',
+                'attr': {
+                    'placeholder': 'Code source de la video...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        {{ form_row(gameForm.date, {
+            label: 'Date de sortie',
+                'attr': {
+                    'placeholder': 'Date de sortie...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        <button type="submit" class="btn btn-outline-danger">
+            Ajouter le jeu
+        </button>
+
+    {{ form_end(gameForm) }}
+</section>
+
+
+{% endblock %}

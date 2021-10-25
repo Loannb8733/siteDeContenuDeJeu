@@ -1,0 +1,12 @@
+{% extends 'back-layout.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Nouvel itilisateur{% endblock %}
+
+{% block body %}
+    <h1>Nouvel utilisateur</h1>
+
+    {{ include('user/_form.html.twig') }}
+
+{% endblock %}

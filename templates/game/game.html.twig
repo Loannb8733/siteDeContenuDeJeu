@@ -1,0 +1,49 @@
+{% extends 'back-layout.html.twig' %}
+
+{% block body %}
+    <h1> {{ titleGame }} </h1>
+
+    {% if app.user.roles[1] is defined and app.user.roles[1] == "ROLE_ADMIN" %}
+        <div>
+            <a href="{{ path('game_create') }}" class="btn btn-outline-danger"> Ajouter un jeu </a>
+        </div> 
+
+        <br>   
+    {% endif %}
+
+    <br>
+
+    <section class="games">
+        {% for jeux in gameR %}
+            <h3> {{ jeux.date }} </h3>
+            <table class="table table-hover">
+                <tbody>
+                    <tr class="table-dark">
+                        <th scope="row">Nom</th>
+                            <td> {{ jeux.name }} </td>
+                            <td rowspan="3" valign="middle" align="center"> 
+                                <a href="{{ path('game_show', {'id': jeux.id}) }}" class="btn btn-outline-info"> Voir plus </a>
+                                
+                                <br> <br>
+
+                                {% if app.user.roles[1] is defined and app.user.roles[1] == "ROLE_ADMIN" %}
+                                    <a href="{{ path('game_delete', {'id': jeux.id}) }}" class="btn btn-outline-primary"> Supprimer </a>
+                                {% endif %}
+                            </td>
+                    </tr>
+                    <tr class="table-dark">
+                        <th scope="row">Plateforme</th>
+                            <td> {{ jeux.platform }} </td>
+                    </tr>
+                    <tr class="table-dark">
+                        <th scope="row" valign="middle">Couverture</th>
+                            <td> <img src="{{ jeux.image }}" style="width: 10%; heigth: auto;"></image> </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endfor %}
+    </section>
+
+    
+{% endblock %}
+

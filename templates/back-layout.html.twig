@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href=" {{ path('homeAdmin') }} ">SymContenu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                    aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            {% if not app.user %}
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('user_new') }}">S'inscrire</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ path('news') }} ">Actualité</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ path('funny_stuffs') }} ">Funny stuff</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ path('legends') }} ">Légende</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ path('game') }} ">Sorties récentes</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ path('user_index') }} ">Utilisateurs</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ path('category') }} ">Catégorie</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </nav>
+{% endblock %}

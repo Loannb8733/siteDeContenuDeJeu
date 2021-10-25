@@ -1,0 +1,41 @@
+{% extends 'back-layout.html.twig' %}
+
+{% block body %}
+    <h1> {{title}} </h1>
+
+    {% if app.user.roles[1] is defined and app.user.roles[1] == "ROLE_ADMIN" %}
+        <div>
+            <a href="{{ path('news_create')}}" class="btn btn-outline-danger">Ajouter une actualité</a>
+        </div>
+
+        <br>   
+    {% endif %}
+
+    <section class="articles">
+        {% for article in news %}
+            <article>
+                <h2> {{ article.title }} </h2>
+                <div class="metadata">
+                    Publié le {{ article.createdAt | date('d/m/y') }} à 
+                              {{ article.createdAt | date('H:i') }} 
+                    dans la catégorie {{ article.category.title }} </div>
+                <div class="content">
+                    <img src="{{ article.image}}" alt="">
+
+                    <br><br>
+
+                    <a href="{{ path('news_show', {'id': article.id}) }}" 
+                       class="btn btn-outline-info">Voir plus</a>
+
+                    {% if app.user.roles[1] is defined and app.user.roles[1] == "ROLE_ADMIN" %}
+                       <a href="{{ path('news_delete', {'id': article.id}) }}" 
+                                class="btn btn-outline-primary" >Supprimer</a>
+                    {% endif %}
+                </div>
+                
+                <br><br><br>
+
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'back-layout.html.twig' %}
+
+{% block body %}
+    <h1> {{ title }} </h1>
+
+    {% if app.user.roles[1] is defined and app.user.roles[1] == "ROLE_ADMIN" %}
+        <div>
+            <a href="{{ path('funny_stuffs_create') }}" 
+               class="btn btn-outline-danger"> Ajouter une funny stuff </a>
+        </div> 
+
+        <br>   
+    {% endif %}
+
+    <br>
+
+    <section class="funnystuffs">
+        {% for choseAmusante in funnyStuffs %}
+            <article>
+                <h2> <a href="{{ path('funny_stuffs_show', {'id': choseAmusante.id}) }}"> {{ choseAmusante.title }} </a></h2>
+                <div class="metadata">
+                    Publié le {{ choseAmusante.createdAt | date('d/m/y') }} à 
+                              {{ choseAmusante.createdAt | date('H:i') }}
+                    <div> {{ choseAmusante.content | raw }} </div>
+
+                </div>
+
+                <div class="video">
+                    <iframe src="{{ choseAmusante.video}} " alt=""> </iframe>
+                </div>
+
+                <br>
+            </article>
+        {% endfor %}
+    </section>
+
+    
+{% endblock %}

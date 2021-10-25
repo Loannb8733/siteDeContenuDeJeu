@@ -1,0 +1,23 @@
+{% extends 'front-layout.html.twig' %}
+
+{% block body %}
+    <br><br>
+    <section class="games">
+        <div class="alert alert-dismissible alert-primary">
+            <p>
+                <strong> Jeu : </strong> {{ game.name }}
+                <img src="{{ game.image }}" style="width: 10%; heigth: auto; margin-left: 2%;"> </image>
+            </p>
+            <p> <strong> Date de sortie : </strong> {{ game.date }} </p>
+            <p> <strong> plateforme : </strong> {{ game.platform }} </p>
+            <p> <strong> Sinopsis : </strong> {{ game.content }} </p>
+            <p> <strong style="vertical-align: top;"> Trailer : </strong> <iframe src="{{ game.video}}" alt=""> </iframe> </p>
+
+        </div>
+    </section>
+
+
+{% endblock %}
+
+
+

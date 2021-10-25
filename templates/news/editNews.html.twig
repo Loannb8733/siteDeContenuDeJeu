@@ -1,0 +1,54 @@
+{% extends 'back-layout.html.twig' %}
+
+{% form_theme formUpdateArticle 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<section>
+    <h1> {{ title }} </h1>
+
+    {{ form_start(formUpdateArticle) }}
+        {{ form_row(formUpdateArticle.title, { 
+            label: 'Titre',
+                'attr': {
+                    'placeholder': 'Titre de l\'article...'
+                }
+            })  
+        }}
+        
+        <br>
+
+        {{ form_row(formUpdateArticle.category, {
+            label: 'Catégorie de l\'article ' }) 
+        }}
+
+        <br>
+
+        {{ form_row(formUpdateArticle.content, {
+            label: 'Contenu de l\'article ',
+                'attr': {
+                    'placeholder': 'Contenu de l\'article...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        {{ form_row(formUpdateArticle.image, {
+            label: 'Url de l\'image',
+                'attr': {
+                    'placeholder': 'URL de l\'article...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        <button type="submit" class="btn btn-outline-success">
+            Enregistrer les modifications
+        </button>
+
+    {{ form_end(formUpdateArticle) }}
+</section>
+
+{% endblock %}

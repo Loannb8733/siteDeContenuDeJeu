@@ -1,0 +1,56 @@
+{% extends 'back-layout.html.twig' %}
+
+{% block body %}
+    <h1> {{ title }} </h1>
+
+    {% if app.user.roles[1] is defined and app.user.roles[1] == "ROLE_ADMIN" %}
+        <div>
+            <a href="{{ path('legends_create') }}" class="btn btn-outline-danger">Ajouter une légende</a>
+        </div> 
+
+        <br>   
+    {% endif %}
+
+    <br>
+
+    <section class="legends">
+        {% for legend in legends %}
+            <article style="display: inline-block; margin: 1%;">
+                <div class="toast show" aria-live="assertive" aria-atomic="true">
+                
+                    <div class="toast-header">
+                        <h4> <strong class="me-auto"> {{ legend.characters }} </strong> </h4>
+                        <small>{{ legend.createdAt | date('d-m-Y') }}</small>
+                    </div>
+
+                    <div class="toast-body">
+                        <p style="text-align: justify;"> {{ legend.content }} </p>
+                    </div>
+
+                    <div class="toast-footer" style="text-align: center;">
+                        <img src="{{ legend.image }}" width="35%" heigth="auto">
+                    </div>
+
+                    {% if app.user.roles[1] is defined and app.user.roles[1] == "ROLE_ADMIN" %}
+
+                        <br>
+
+                        <div style="text-align: center;"> 
+                            <a href="{{ path('legends_edit', {'id': legend.id}) }}" 
+                            class="btn btn-outline-warning" >Modifier la légende</a>
+
+                            <br> <br>
+
+                            <a href="{{ path('legends_delete', {'id': legend.id}) }}" 
+                                class="btn btn-outline-primary" >Supprimer</a>
+                        </div>
+
+                        <br>
+                    {% endif %}
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+
+    
+{% endblock %}

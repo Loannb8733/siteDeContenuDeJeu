@@ -1,0 +1,39 @@
+{% extends 'back-layout.html.twig' %}
+
+{% form_theme categoryForm 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <section>
+        <h2> {{ titleAddCategory }} </h2>
+
+        {{ form_start(categoryForm) }}
+        {{ form_row(categoryForm.title, {
+            label: 'Titre',
+            'attr': {
+                'placeholder': 'Titre de la catégorie...'
+            }
+        })
+        }}
+
+        <br>
+
+        {{ form_row(categoryForm.content, {
+            label: 'Description ',
+            'attr': {
+                'placeholder': 'Description de la catégorie...'
+            }
+        })
+        }}
+
+        <br>
+
+        <button type="submit" class="btn btn-outline-danger">
+            Ajouter la catégorie
+        </button>
+
+        {{ form_end(categoryForm) }}
+    </section>
+
+
+{% endblock %}

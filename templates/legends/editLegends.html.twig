@@ -1,0 +1,49 @@
+{% extends 'back-layout.html.twig' %}
+
+{% form_theme formLegends 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<section>
+    <h1> {{ title }} </h1>
+
+    {{ form_start(formLegends) }}
+        {{ form_row(formLegends.characters, { 
+            label: 'Personnage',
+                'attr': {
+                    'placeholder': 'Personnage...'
+                }
+            })  
+        }}
+
+        <br>
+
+        {{ form_row(formLegends.content, {
+            label: 'Informations sur le personnage ',
+                'attr': {
+                    'placeholder': 'Informations sur le personnage...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        {{ form_row(formLegends.image, {
+            label: 'code source de l\image du personnage',
+                'attr': {
+                    'placeholder': 'code source de l\'image...'
+                }
+            }) 
+        }}
+
+        <br>
+
+        <button type="submit" class="btn btn-outline-success">
+            Enregistrer les modifications
+        </button>
+
+    {{ form_end(formLegends) }}
+</section>
+
+
+{% endblock %}

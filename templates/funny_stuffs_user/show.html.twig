@@ -1,0 +1,22 @@
+{% extends 'front-layout.html.twig' %}
+
+{% block body %}
+    <article>
+        <h2>{{ funnyStuffs.title }}</h2>
+        <div class="metadata">Publié le {{ funnyStuffs.createdAt | date('d/m/y') }} à
+            {{ funnyStuffs.createdAt | date('H:i') }}
+
+            <div>
+                {{ funnyStuffs.content | raw }}
+            </div>
+        </div>
+
+        <br>
+
+        <div class="content">
+            <iframe src="{{ funnyStuffs.video }}" alt=""> </iframe>
+        </div>
+
+    </article>
+
+{% endblock %}
